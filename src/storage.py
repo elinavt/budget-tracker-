@@ -4,6 +4,8 @@ import csv
 BASE_DIR = Path(__file__).resolve().parent.parent
 FILE_NAME = BASE_DIR / 'data' / 'expenses.csv'
 
+FIELDS = ('date', 'amount', 'category', 'description')
+
 def load_expenses() -> list[dict]:
     """
     Load expenses from the CSV file.
@@ -15,7 +17,7 @@ def load_expenses() -> list[dict]:
     """
     if not FILE_NAME.exists():
         return []
-    required_fields = {'date', 'amount', 'category', 'description'}
+    required_fields = set(FIELDS)
     with open(FILE_NAME, newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         if not reader.fieldnames or not required_fields.issubset(reader.fieldnames):
@@ -41,7 +43,7 @@ def save_expenses(expenses: list[dict]) -> None:
     """
     FILE_NAME.parent.mkdir(exist_ok=True)
     with open(FILE_NAME, 'w', newline='', encoding='utf-8') as file:
-        fieldnames = ['date', 'amount', 'category', 'description']
+        fieldnames = FIELDS
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(expenses)
