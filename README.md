@@ -22,7 +22,7 @@ This project allows users to record, view, search, edit, and delete expenses. Da
 ## Project Structure
 
 ```text
-budget-tracker/
+budget-tracker-/
 │
 ├── data/
 │   └── expenses.csv
@@ -115,7 +115,7 @@ git clone https://github.com/elinavt/budget-tracker-.git
 Navigate into the project folder:
 
 ```bash
-cd budget-tracker
+cd budget-tracker-
 ```
 
 ## Running the Application
